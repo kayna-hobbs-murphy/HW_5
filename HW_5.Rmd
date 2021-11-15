@@ -37,10 +37,22 @@ balt_homicides <- balt_homicides %>%
 
 head(balt_homicides)
 ```
+```{r}
+seasons = function(x){
+  if(x %in% c(11,12,1,2,3,4)) return("Winter")
+  if(x %in% 5:10) return("Summer")
+}
+
+balt_homicides$season = sapply(month(balt_homicides$reported_date), seasons)
+
+head(balt_homicides)
+```
+
+
 
 ```{r}
 balt_homicides %>% 
-  ggplot(aes(x = reported_date))+
+  ggplot(aes(x = reported_date, color = season)+
   geom_histogram(binwidth = 15)+
   scale_x_date(labels = date_format("%y"))+
   theme_dark()
