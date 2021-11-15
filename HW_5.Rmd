@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(readr)
 library(tidyverse)
 library(lubridate)
+library(scales)
 ```
 
 
@@ -39,7 +40,9 @@ head(balt_homicides)
 
 ```{r}
 balt_homicides %>% 
-  ggplot()+
-  geom_bar(y=)
+  ggplot(aes(x = reported_date))+
+  geom_histogram(binwidth = 15)+
+  scale_x_date(labels = date_format("%y"))+
+  theme_dark()
 ```
 
