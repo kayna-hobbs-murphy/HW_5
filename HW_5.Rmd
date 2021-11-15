@@ -50,11 +50,15 @@ head(balt_homicides)
 
 
 
-```{r}
+```{r, fig.width=12, fig.height=3}
 balt_homicides %>% 
-  ggplot(aes(x = reported_date, color = season)+
-  geom_histogram(binwidth = 15)+
-  scale_x_date(labels = date_format("%y"))+
-  theme_dark()
+  ggplot(aes(x = reported_date, fill = season))+
+  geom_histogram(color = "black", binwidth = 35)+
+  theme_dark()+
+  theme(legend.position = "bottom")+
+  scale_y_continuous(name = "Monthly homocides", breaks = c(0, 10, 20, 30, 40))+
+  labs(title="Homicides in Baltimore, MD",
+       x="Date",
+       fill = "")
 ```
 
