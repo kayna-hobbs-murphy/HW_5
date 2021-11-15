@@ -50,13 +50,25 @@ head(balt_homicides)
 
 
 
+
+
 ```{r, fig.width=12, fig.height=3}
 balt_homicides %>% 
   ggplot(aes(x = reported_date, fill = season))+
   geom_histogram(color = "black", binwidth = 27)+
-  geom_vline(aes(xintercept = as.numeric(ymd("2015-04-12")),
-                 color = "red",
-                 linetype = "dashed"))+
+  geom_vline(aes(xintercept = as.numeric(ymd("2015-04-12"))),
+             color = "red",
+             linetype = "dashed",
+             size = 2,
+             show.legend = NA)+  
+  geom_line(stat = "density", color = "blue")+
+  geom_text(label= "Arrest of
+            Freddie Gray",
+            x=as.numeric(ymd("2015-04-12")),
+            y=40,
+            color = "grey",
+            hjust = 1,
+            vjust = 0.75)+
   theme_dark()+
   theme(legend.position = "bottom")+
   scale_y_continuous(name = "Monthly homocides", breaks = c(0, 10, 20, 30, 40))+
