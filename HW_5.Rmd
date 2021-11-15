@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(readr)
+library(tidyverse)
 ```
 
 
@@ -19,5 +20,10 @@ homicides <- read_csv(file = "data/homicide-data.txt")
 ```
 ```{r}
 head(homicides)
+```
+
+```{r}
+homicides <- homicides %>% 
+  unite(col= city_name, city, state, sep=", ") 
 ```
 
