@@ -30,5 +30,8 @@ homicides <- homicides %>%
 ```{r}
 balt_homicides <- homicides %>% 
   filter(city_name == "Baltimore, MD")
+
+head(balt_homicides)
 ```
+
 
