@@ -21,6 +21,7 @@ homicides <- read_csv(file = "data/homicide-data.txt")
 ```
 ```{r}
 head(homicides)
+data.class(homicides$reported_date)
 ```
 
 ```{r}
@@ -31,7 +32,7 @@ balt_homicides <- homicides %>%
   filter(city_name == "Baltimore, MD")
 
 balt_homicides <- balt_homicides %>% 
-  mutate(reported_date = mdy(reported_date))
+  mutate(reported_date = ymd(reported_date))
 
 head(balt_homicides)
 ```
