@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(readr)
 library(tidyverse)
+library(lubridate)
 ```
 
 
@@ -25,13 +26,19 @@ head(homicides)
 ```{r}
 homicides <- homicides %>% 
   unite(col= city_name, city, state, sep=", ") 
-```
 
-```{r}
 balt_homicides <- homicides %>% 
   filter(city_name == "Baltimore, MD")
+
+balt_homicides <- balt_homicides %>% 
+  mutate(reported_date = mdy(reported_date))
 
 head(balt_homicides)
 ```
 
+```{r}
+balt_homicides %>% 
+  ggplot()+
+  geom_bar(y=)
+```
 
