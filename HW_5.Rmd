@@ -15,8 +15,6 @@ library(readr)
 
 
 ```{r}
-getwd()
-list.files()
 homicides <- read_csv(file = "data/homicide-data.txt")
 ```
 
