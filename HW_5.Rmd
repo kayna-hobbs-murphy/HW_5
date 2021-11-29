@@ -54,8 +54,9 @@ head(balt_homicides)
 
 ```{r, fig.width=12, fig.height=3}
 balt_homicides %>% 
-  ggplot(aes(x = reported_date, fill = season))+ 
-  geom_histogram(color = "black", binwidth = 27)+
+  ggplot(aes(x = reported_date))+ 
+  geom_histogram(aes(fill = season), color = "black", binwidth = 27)+
+  geom
   scale_fill_manual(values = c("grey", "skyblue"))+
   geom_vline(aes(xintercept = as.numeric(ymd("2015-04-12"))),
              color = "red",
@@ -80,6 +81,6 @@ balt_homicides %>%
   ggplot(aes(x=reported_date))+
   geom_density(color = "blue", adjust = 1/4, size = 1.5)
 
-
+#play with geom_smooth
 ```
 
