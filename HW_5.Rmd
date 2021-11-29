@@ -54,18 +54,18 @@ head(balt_homicides)
 
 ```{r}
 monthly = function(x){
-  if(x %in% c(1)) return(FUN=sum(x))
-  if(x %in% c(2)) return(FUN=sum(x))
-  if(x %in% c(3)) return(FUN=sum(x))
-  if(x %in% c(4)) return(FUN=sum(x))
-  if(x %in% c(5)) return(FUN=sum(x))
-  if(x %in% c(6)) return(FUN=sum(x))
-  if(x %in% c(7)) return(FUN=sum(x))
-  if(x %in% c(8)) return(FUN=sum(x))
-  if(x %in% c(9)) return(FUN=sum(x))
-  if(x %in% c(10)) return(FUN=sum(x))
-  if(x %in% c(11)) return(FUN=sum(x))
-  if(x %in% c(12)) return(FUN=sum(x))
+  if(x %in% c(1)) return(FUN=sum(x %in% c(1)))
+  if(x %in% c(2)) return(FUN=sum(x %in% c(2)))
+  if(x %in% c(3)) return(FUN=sum(x %in% c(3)))
+  if(x %in% c(4)) return(FUN=sum(x %in% c(4)))
+  if(x %in% c(5)) return(FUN=sum(x %in% c(5)))
+  if(x %in% c(6)) return(FUN=sum(x %in% c(6)))
+  if(x %in% c(7)) return(FUN=sum(x %in% c(7)))
+  if(x %in% c(8)) return(FUN=sum(x %in% c(8)))
+  if(x %in% c(9)) return(FUN=sum(x %in% c(9)))
+  if(x %in% c(10)) return(FUN=sum(x %in% c(10)))
+  if(x %in% c(11)) return(FUN=sum(x %in% c(11)))
+  if(x %in% c(12)) return(FUN=sum(x %in% c(12)))
 }
 
 balt_homicides$monthly = sapply(month(balt_homicides$reported_date), monthly)
@@ -99,12 +99,5 @@ balt_homicides %>%
   labs(title="Homicides in Baltimore, MD",
        x="Date",
        fill = "")
-
-balt_homicides %>% 
-  ggplot(aes(x=reported_date))+
-  geom_density()
-
-#play with geom_smooth
-#
 ```
 
