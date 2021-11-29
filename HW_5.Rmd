@@ -15,6 +15,8 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 library(dplyr)
+library(data.table)
+library(zoo)
 ```
 
 
@@ -51,7 +53,24 @@ head(balt_homicides)
 
 
 ```{r}
+monthly = function(x){
+  if(x %in% c(1)) return(FUN=sum(x))
+  if(x %in% c(2)) return(FUN=sum(x))
+  if(x %in% c(3)) return(FUN=sum(x))
+  if(x %in% c(4)) return(FUN=sum(x))
+  if(x %in% c(5)) return(FUN=sum(x))
+  if(x %in% c(6)) return(FUN=sum(x))
+  if(x %in% c(7)) return(FUN=sum(x))
+  if(x %in% c(8)) return(FUN=sum(x))
+  if(x %in% c(9)) return(FUN=sum(x))
+  if(x %in% c(10)) return(FUN=sum(x))
+  if(x %in% c(11)) return(FUN=sum(x))
+  if(x %in% c(12)) return(FUN=sum(x))
+}
 
+balt_homicides$monthly = sapply(month(balt_homicides$reported_date), monthly)
+
+head(balt_homicides)
 ```
 
 
@@ -73,7 +92,7 @@ balt_homicides %>%
             color = "white",
             hjust = 1,
             vjust = 0.75)+
-  geom_smooth(aes(x=reported_date, y=..count..), color = "blue", adjust = 1/4, size = 1.5)+
+  geom_smooth(aes(x=reported_date, y=monthly), color = "blue", adjust = 1/4, size = 1.5)+
   theme_dark()+
   theme(legend.position = "bottom")+
   scale_y_continuous(name = "Monthly homocides", breaks = c(0, 10, 20, 30, 40))+
