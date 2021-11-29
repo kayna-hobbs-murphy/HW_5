@@ -14,6 +14,7 @@ library(readr)
 library(tidyverse)
 library(lubridate)
 library(scales)
+library(dplyr)
 ```
 
 
@@ -49,14 +50,16 @@ head(balt_homicides)
 ```
 
 
+```{r}
+
+```
 
 
 
 ```{r, fig.width=12, fig.height=3}
 balt_homicides %>% 
-  ggplot(aes(x = reported_date))+ 
-  geom_histogram(aes(fill = season), color = "black", binwidth = 27)+
-  geom
+  ggplot()+ 
+  geom_histogram(aes(fill = season, x = reported_date), color = "black", binwidth = 27)+
   scale_fill_manual(values = c("grey", "skyblue"))+
   geom_vline(aes(xintercept = as.numeric(ymd("2015-04-12"))),
              color = "red",
@@ -70,6 +73,7 @@ balt_homicides %>%
             color = "white",
             hjust = 1,
             vjust = 0.75)+
+  geom_smooth(aes(x=reported_date, y=..count..), color = "blue", adjust = 1/4, size = 1.5)+
   theme_dark()+
   theme(legend.position = "bottom")+
   scale_y_continuous(name = "Monthly homocides", breaks = c(0, 10, 20, 30, 40))+
@@ -79,8 +83,9 @@ balt_homicides %>%
 
 balt_homicides %>% 
   ggplot(aes(x=reported_date))+
-  geom_density(color = "blue", adjust = 1/4, size = 1.5)
+  geom_density()
 
 #play with geom_smooth
+#
 ```
 
