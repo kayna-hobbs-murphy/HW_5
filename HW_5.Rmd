@@ -44,11 +44,12 @@ balt_homicides <- balt_homicides %>%
 
 balt_homicides$month_year <- as.factor(balt_homicides$month_year)
 
-balt_homicides %>% 
+count <- balt_homicides %>% 
   group_by(month_year) %>% 
   summarize(monthly_count = n()) %>% 
   ungroup()
 
+balt_homicides <- merge(balt_homicides, count, by=c("month_year"), all=TRUE, sort=FALSE)
 
 head(balt_homicides)
 ```
@@ -82,7 +83,7 @@ balt_homicides %>%
             color = "white",
             hjust = 1,
             vjust = 0.75)+
-  geom_smooth(aes(x=date, y=monthly), color = "blue", adjust = 1/4, size = 1.5)+
+  geom_smooth(aes(x=date, y=monthly_count), method = "loess", color = "blue", size = 1.5, se = FALSE, span = 0.1)+
   theme_dark()+
   theme(legend.position = "bottom")+
   scale_y_continuous(name = "Monthly homocides", breaks = c(0, 10, 20, 30, 40))+
@@ -90,4 +91,3 @@ balt_homicides %>%
        x="Date",
        fill = "")
 ```
-
