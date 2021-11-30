@@ -9,18 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, message=FALSE}
 library(readr)
 library(tidyverse)
 library(lubridate)
 library(scales)
-library(dplyr)
-library(data.table)
-library(zoo)
 ```
 
 
-```{r}
+```{r, message= FALSE}
 homicides <- read_csv(file = "data/homicide-data.txt")
 ```
 
